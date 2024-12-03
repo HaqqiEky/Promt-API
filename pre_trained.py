@@ -2,8 +2,6 @@ import tensorflow as tf
 from transformers import TFBertModel
 
 def create_model(max_len=768):
-    
-    # Ganti dengan model IndoBERT biasa
     bert_model = TFBertModel.from_pretrained("indolem/indobert-base-uncased", from_pt=True)
     
     # Optimizer, loss, dan metrik
@@ -15,7 +13,7 @@ def create_model(max_len=768):
     input_ids = tf.keras.Input(shape=(max_len,), dtype='int32')
     attention_masks = tf.keras.Input(shape=(max_len,), dtype='int32')
 
-    # Embedding layer dari model pretrained
+    # Embedding layer 
     embeddings = bert_model([input_ids, attention_masks])[1]
     
     # Lapisan tambahan untuk klasifikasi
@@ -26,5 +24,9 @@ def create_model(max_len=768):
 
     # Model akhir
     model = tf.keras.models.Model(inputs=[input_ids, attention_masks], outputs=output)
-    
+
+    # Kompilasi model
+    model.compile(optimizer=opt, loss=loss, metrics=[accuracy])
+
     return model
+
