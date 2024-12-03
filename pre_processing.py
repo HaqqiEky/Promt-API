@@ -1,7 +1,6 @@
 import re
 import emoji
 
-
 def clean_non_alphanumeric(text):
     # Define a regex pattern to match @USER format
     user_pattern = re.compile(r'@USER')

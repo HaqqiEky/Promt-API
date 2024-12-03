@@ -1,7 +1,7 @@
 import numpy as np
 from transformers import TFBertModel, BertTokenizerFast
 
-tokenizer = BertTokenizerFast.from_pretrained("indolem/indobert-base-uncased")
+tokenizer = BertTokenizerFast.from_pretrained("indobenchmark/indobert-lite-large-p1")
 
 def tokenize(data, max_len):
     input_ids = []
